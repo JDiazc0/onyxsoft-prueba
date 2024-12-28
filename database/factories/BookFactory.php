@@ -9,15 +9,17 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class BookFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = \App\Models\Book::class;
+
+    public function definition()
     {
         return [
-            //
+            'title' => $this->faker->sentence,
+            'genre' => $this->faker->randomElement(['fiction', 'non-fiction', 'biography', 'science fiction']),
+            'published_date' => $this->faker->date,
+            'available' => true,
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

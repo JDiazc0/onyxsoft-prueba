@@ -9,15 +9,16 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class AuthorFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = \App\Models\Author::class;
+
+    public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name,
+            'birth_date' => $this->faker->date(),
+            'death_date' => $this->faker->optional(0.3)->date(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }
