@@ -99,9 +99,9 @@ class BookController extends Controller
     /**
      * Rent a specified book to a client.
      */
-    public function returnBook(Book $rentBook)
+    public function returnBook(Book $book)
     {
-        $rentBook = $this->bookService->returnBook($rentBook->id);
+        $rentBook = $this->bookService->returnBook($book->id);
 
         return response()->json([
             'message' => 'Book returned correctly',
