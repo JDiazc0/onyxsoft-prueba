@@ -15,6 +15,7 @@ class AuthorResponse extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'name' => $this->name,
             'birth_date' => $this->birth_date,
             'death_date' => $this->death_date ?? null,

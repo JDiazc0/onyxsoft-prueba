@@ -50,10 +50,10 @@ class AuthorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Author $author)
+    public function show(int $author)
     {
 
-        $authorFinded = $this->authorService->findAuthor($author->id);
+        $authorFinded = $this->authorService->findAuthor($author);
 
         return response()->json([
             'message' => 'Author retrieved successfully',
@@ -64,12 +64,12 @@ class AuthorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAuthorRequest $request, Author $author)
+    public function update(UpdateAuthorRequest $request, int $author)
     {
 
         $data = $request->validated();
 
-        $author = $this->authorService->updateAuthor($data, $author->id);
+        $author = $this->authorService->updateAuthor($data, $author);
 
         return response()->json([
             'message' => 'Author updated successfully',
@@ -80,10 +80,10 @@ class AuthorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Author $author)
+    public function destroy(int $author)
     {
 
-        $this->authorService->deleteAuthor($author->id);
+        $this->authorService->deleteAuthor($author);
 
         return response()->json([
             'message' => 'Author deleted successfully'

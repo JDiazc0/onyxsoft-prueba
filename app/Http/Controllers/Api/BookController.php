@@ -52,9 +52,9 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Book $book)
+    public function show(int $book)
     {
-        $bookFinded = $this->bookService->findBook($book->id);
+        $bookFinded = $this->bookService->findBook($book);
 
         return response()->json([
             'message' => 'Book retrieved successfully',
@@ -65,11 +65,11 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBookRequest $request, Book $book)
+    public function update(UpdateBookRequest $request, int $book)
     {
         $data = $request->validated();
 
-        $book = $this->bookService->updateBook($data, $book->id);
+        $book = $this->bookService->updateBook($data, $book);
 
         return response()->json([
             'message' => 'Book updated successfully',
@@ -80,10 +80,10 @@ class BookController extends Controller
     /**
      * Rent a specified book to a client.
      */
-    public function rentBook(Book $book)
+    public function rentBook(int $book)
     {
         try {
-            $rentBook = $this->bookService->rentBook($book->id);
+            $rentBook = $this->bookService->rentBook($book);
 
             return response()->json([
                 'message' => 'Book rented successfully',
@@ -99,9 +99,9 @@ class BookController extends Controller
     /**
      * Rent a specified book to a client.
      */
-    public function returnBook(Book $book)
+    public function returnBook(int $book)
     {
-        $rentBook = $this->bookService->returnBook($book->id);
+        $rentBook = $this->bookService->returnBook($book);
 
         return response()->json([
             'message' => 'Book returned correctly',
@@ -112,9 +112,9 @@ class BookController extends Controller
     /**
      * Add an author to a book.
      */
-    public function addAuthor(Book $book, Author $author)
+    public function addAuthor(int $book, int $author)
     {
-        $this->bookService->addAuthorToBook($book->id, $author->id);
+        $this->bookService->addAuthorToBook($book, $author);
 
         return response()->json([
             'message' => 'Author added to book successfully'
@@ -124,10 +124,10 @@ class BookController extends Controller
     /**
      * Remove an author to a book.
      */
-    public function removeAuthor(Book $book, Author $author)
+    public function removeAuthor($book, $author)
     {
         try {
-            $this->bookService->removeAuthorFromBook($book->id, $author->id);
+            $this->bookService->removeAuthorFromBook($book, $author);
 
             return response()->json([
                 'message' => 'Author removed from book successfully.',
@@ -142,9 +142,9 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Book $book)
+    public function destroy($book)
     {
-        $this->bookService->deleteBook($book->id);
+        $this->bookService->deleteBook($book);
 
         return response()->json([
             'message' => 'Book deleted successfully'
