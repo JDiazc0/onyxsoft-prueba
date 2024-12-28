@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthorControllerFront;
 use App\Http\Controllers\BookControllerFront;
 use Illuminate\Support\Facades\Route;
 
+Route::redirect('/', '/books');
+
 Route::get('/books', [BookControllerFront::class, 'index'])->name('book.index');
 Route::get('/books/show/{book_id}', [BookControllerFront::class, 'show'])->name('book.show');
 
